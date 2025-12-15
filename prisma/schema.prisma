@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  username      String    @unique
+  password      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  habits        Habit[]
+  completions   HabitCompletion[]
+  followers     Follow[]  @relation("following")
+  following     Follow[]  @relation("follower")
+
+  @@map("users")
+}
+
+model Habit {
+  id            String    @id @default(cuid())
+  name          String
+  category      String    @default("General")
+  frequency     Frequency @default(DAILY)
+  currentStreak Int       @default(0)
+  longestStreak Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  completions   HabitCompletion[]
+
+  // Unique constraint: prevent duplicate habit names per user
+  @@unique([userId, name])
+  @@map("habits")
+}
+
+model HabitCompletion {
+  id          String   @id @default(cuid())
+  completedAt DateTime @default(now())
+
+  // Relations
+  habitId     String
+  habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("habit_completions")
+}
+
+model Follow {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+
+  // Relations
+  followerId  String
+  follower    User     @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  followingId String
+  following   User     @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  // Unique constraint: prevent duplicate follows
+  @@unique([followerId, followingId])
+  @@map("follows")
+}
+
+enum Frequency {
+  DAILY
+  WEEKLY
+}
