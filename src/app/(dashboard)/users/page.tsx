@@ -64,11 +64,11 @@ export default function UsersPage() {
     };
 
     return (
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-4 lg:space-y-6">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold text-white">Find Friends</h1>
-                <p className="text-zinc-400 mt-1">
+                <h1 className="text-2xl lg:text-3xl font-bold text-white">Find Friends</h1>
+                <p className="text-zinc-400 mt-1 text-sm lg:text-base">
                     Search for users to follow and see their progress
                 </p>
             </div>
@@ -100,26 +100,26 @@ export default function UsersPage() {
                     ))}
                 </div>
             ) : hasSearched ? (
-                <Card className="text-center py-12">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-surface-light flex items-center justify-center">
-                        <Users className="w-8 h-8 text-muted" />
+                <Card className="text-center py-8 lg:py-12">
+                    <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-4 rounded-full bg-surface-light flex items-center justify-center">
+                        <Users className="w-7 h-7 lg:w-8 lg:h-8 text-muted" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
+                    <h3 className="text-base lg:text-lg font-semibold text-white mb-2">
                         No users found
                     </h3>
-                    <p className="text-zinc-400">
+                    <p className="text-zinc-400 text-sm lg:text-base">
                         Try a different search term
                     </p>
                 </Card>
             ) : (
-                <Card className="text-center py-12">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-surface-light flex items-center justify-center">
-                        <Search className="w-8 h-8 text-muted" />
+                <Card className="text-center py-8 lg:py-12">
+                    <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-4 rounded-full bg-surface-light flex items-center justify-center">
+                        <Search className="w-7 h-7 lg:w-8 lg:h-8 text-muted" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
+                    <h3 className="text-base lg:text-lg font-semibold text-white mb-2">
                         Search for friends
                     </h3>
-                    <p className="text-zinc-400">
+                    <p className="text-zinc-400 text-sm lg:text-base">
                         Enter at least 2 characters to search
                     </p>
                 </Card>

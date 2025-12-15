@@ -18,7 +18,8 @@ export default async function DashboardLayout({
         <ToastProvider>
             <div className="min-h-screen bg-background">
                 <Sidebar username={session.user.name} />
-                <main className="ml-64 min-h-screen p-8">
+                {/* Add padding-top on mobile for fixed header, margin-left on desktop for sidebar */}
+                <main className="pt-16 lg:pt-0 lg:ml-64 min-h-screen p-4 lg:p-8">
                     {children}
                 </main>
             </div>

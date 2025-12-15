@@ -72,13 +72,13 @@ export default function HabitCard({
 
     return (
         <>
-            <Card hover className="group relative">
+            <Card hover className="group relative p-4 lg:p-6">
                 {/* Menu Button */}
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-3 right-3 lg:top-4 lg:right-4">
                     <div className="relative">
                         <button
                             onClick={() => setShowMenu(!showMenu)}
-                            className="p-2 rounded-lg text-zinc-500 hover:text-white hover:bg-surface-light transition-colors opacity-0 group-hover:opacity-100"
+                            className="p-2 rounded-lg text-zinc-500 hover:text-white hover:bg-surface-light transition-colors"
                         >
                             <MoreVertical className="w-5 h-5" />
                         </button>
@@ -113,13 +113,13 @@ export default function HabitCard({
                     </div>
                 </div>
 
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 lg:gap-4">
                     {/* Check-in Button */}
                     <button
                         onClick={handleComplete}
                         disabled={isLoading}
                         className={`
-              w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300
+              w-12 h-12 lg:w-14 lg:h-14 rounded-xl flex items-center justify-center transition-all duration-300 flex-shrink-0
               ${habit.isCompletedToday
                                 ? "bg-success text-white shadow-lg shadow-success/30"
                                 : "bg-surface-light text-zinc-400 hover:text-white hover:bg-primary hover:shadow-lg hover:shadow-primary/30"
@@ -128,20 +128,20 @@ export default function HabitCard({
             `}
                     >
                         {habit.isCompletedToday ? (
-                            <Check className="w-7 h-7" />
+                            <Check className="w-6 h-6 lg:w-7 lg:h-7" />
                         ) : (
-                            <div className="w-7 h-7 border-2 border-current rounded-full" />
+                            <div className="w-6 h-6 lg:w-7 lg:h-7 border-2 border-current rounded-full" />
                         )}
                     </button>
 
                     {/* Habit Info */}
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 pr-8">
                         <div className="flex items-center gap-2 mb-1">
-                            <h3 className="font-semibold text-lg text-white truncate">
+                            <h3 className="font-semibold text-base lg:text-lg text-white truncate">
                                 {habit.name}
                             </h3>
                             {habit.currentStreak >= 3 && (
-                                <span className="flex items-center gap-1 text-orange-400">
+                                <span className="flex items-center gap-1 text-orange-400 flex-shrink-0">
                                     <Flame className="w-4 h-4" />
                                 </span>
                             )}
@@ -159,33 +159,33 @@ export default function HabitCard({
                             </span>
                         </div>
 
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4">
+                        {/* Stats - Stack on mobile */}
+                        <div className="grid grid-cols-3 gap-2 lg:gap-4">
                             <div>
-                                <p className="text-2xl font-bold text-white flex items-center gap-1">
+                                <p className="text-lg lg:text-2xl font-bold text-white flex items-center gap-1">
                                     {habit.currentStreak}
                                     {habit.currentStreak > 0 && (
-                                        <Flame className="w-5 h-5 text-orange-400" />
+                                        <Flame className="w-4 h-4 lg:w-5 lg:h-5 text-orange-400" />
                                     )}
                                 </p>
-                                <p className="text-xs text-muted">Current Streak</p>
+                                <p className="text-xs text-muted">Streak</p>
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-white">
+                                <p className="text-lg lg:text-2xl font-bold text-white">
                                     {habit.longestStreak}
                                 </p>
-                                <p className="text-xs text-muted">Best Streak</p>
+                                <p className="text-xs text-muted">Best</p>
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-white">
+                                <p className="text-lg lg:text-2xl font-bold text-white">
                                     {habit.completionRate}%
                                 </p>
-                                <p className="text-xs text-muted">Completion</p>
+                                <p className="text-xs text-muted">Done</p>
                             </div>
                         </div>
 
                         {/* Progress Bar */}
-                        <div className="mt-4 h-2 bg-surface-light rounded-full overflow-hidden">
+                        <div className="mt-3 lg:mt-4 h-2 bg-surface-light rounded-full overflow-hidden">
                             <div
                                 className="h-full bg-gradient-to-r from-primary to-purple-400 transition-all duration-500"
                                 style={{ width: `${habit.completionRate}%` }}
@@ -199,7 +199,7 @@ export default function HabitCard({
                     <button
                         onClick={handleComplete}
                         disabled={isLoading}
-                        className="absolute bottom-4 right-4 flex items-center gap-1 text-xs text-zinc-500 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
+                        className="absolute bottom-3 right-3 lg:bottom-4 lg:right-4 flex items-center gap-1 text-xs text-zinc-500 hover:text-white transition-colors"
                     >
                         <Undo2 className="w-3 h-3" />
                         Undo

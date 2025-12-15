@@ -49,14 +49,14 @@ export default function LeaderboardPage() {
     const getRankIcon = (rank: number) => {
         switch (rank) {
             case 1:
-                return <Crown className="w-6 h-6 text-yellow-400" />;
+                return <Crown className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400" />;
             case 2:
-                return <Medal className="w-6 h-6 text-zinc-300" />;
+                return <Medal className="w-5 h-5 lg:w-6 lg:h-6 text-zinc-300" />;
             case 3:
-                return <Medal className="w-6 h-6 text-orange-400" />;
+                return <Medal className="w-5 h-5 lg:w-6 lg:h-6 text-orange-400" />;
             default:
                 return (
-                    <span className="w-6 h-6 flex items-center justify-center text-muted font-bold">
+                    <span className="w-5 h-5 lg:w-6 lg:h-6 flex items-center justify-center text-muted font-bold text-sm">
                         {rank}
                     </span>
                 );
@@ -77,36 +77,36 @@ export default function LeaderboardPage() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-4 lg:space-y-6">
             {/* Header */}
             <div className="text-center">
-                <div className="flex items-center justify-center gap-3 mb-2">
-                    <Trophy className="w-8 h-8 text-yellow-400" />
-                    <h1 className="text-3xl font-bold text-white">Leaderboard</h1>
+                <div className="flex items-center justify-center gap-2 lg:gap-3 mb-2">
+                    <Trophy className="w-6 h-6 lg:w-8 lg:h-8 text-yellow-400" />
+                    <h1 className="text-2xl lg:text-3xl font-bold text-white">Leaderboard</h1>
                 </div>
-                <p className="text-zinc-400">
+                <p className="text-zinc-400 text-sm lg:text-base">
                     Compete with others and climb to the top!
                 </p>
             </div>
 
-            {/* Top 3 Podium */}
+            {/* Top 3 Podium - Hide on very small screens */}
             {leaderboard.length >= 3 && (
-                <div className="grid grid-cols-3 gap-4 mb-8">
+                <div className="hidden sm:grid grid-cols-3 gap-3 lg:gap-4 mb-6 lg:mb-8">
                     {/* Second Place */}
-                    <div className="mt-8">
-                        <Card className={`text-center py-6 ${getRankBg(2)}`}>
-                            <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-zinc-400 to-zinc-500 flex items-center justify-center">
-                                <span className="text-2xl font-bold text-white">
+                    <div className="mt-6 lg:mt-8">
+                        <Card className={`text-center py-4 lg:py-6 ${getRankBg(2)}`}>
+                            <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-2 lg:mb-3 rounded-full bg-gradient-to-br from-zinc-400 to-zinc-500 flex items-center justify-center">
+                                <span className="text-lg lg:text-2xl font-bold text-white">
                                     {leaderboard[1].username.charAt(0).toUpperCase()}
                                 </span>
                             </div>
-                            <Medal className="w-6 h-6 text-zinc-300 mx-auto mb-2" />
-                            <h3 className="font-semibold text-white truncate px-2">
+                            <Medal className="w-5 h-5 lg:w-6 lg:h-6 text-zinc-300 mx-auto mb-1 lg:mb-2" />
+                            <h3 className="font-semibold text-white truncate px-2 text-sm lg:text-base">
                                 {leaderboard[1].username}
                             </h3>
-                            <p className="text-2xl font-bold text-white mt-2 flex items-center justify-center gap-1">
+                            <p className="text-lg lg:text-2xl font-bold text-white mt-1 lg:mt-2 flex items-center justify-center gap-1">
                                 {leaderboard[1].totalCurrentStreak}
-                                <Flame className="w-5 h-5 text-orange-400" />
+                                <Flame className="w-4 h-4 lg:w-5 lg:h-5 text-orange-400" />
                             </p>
                             <p className="text-xs text-muted">Total Streak</p>
                         </Card>
@@ -114,39 +114,39 @@ export default function LeaderboardPage() {
 
                     {/* First Place */}
                     <div>
-                        <Card className={`text-center py-8 ${getRankBg(1)}`}>
-                            <div className="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center ring-4 ring-yellow-400/30">
-                                <span className="text-3xl font-bold text-white">
+                        <Card className={`text-center py-6 lg:py-8 ${getRankBg(1)}`}>
+                            <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto mb-2 lg:mb-3 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center ring-4 ring-yellow-400/30">
+                                <span className="text-2xl lg:text-3xl font-bold text-white">
                                     {leaderboard[0].username.charAt(0).toUpperCase()}
                                 </span>
                             </div>
-                            <Crown className="w-8 h-8 text-yellow-400 mx-auto mb-2" />
-                            <h3 className="font-semibold text-white text-lg truncate px-2">
+                            <Crown className="w-6 h-6 lg:w-8 lg:h-8 text-yellow-400 mx-auto mb-1 lg:mb-2" />
+                            <h3 className="font-semibold text-white text-base lg:text-lg truncate px-2">
                                 {leaderboard[0].username}
                             </h3>
-                            <p className="text-3xl font-bold text-white mt-2 flex items-center justify-center gap-1">
+                            <p className="text-2xl lg:text-3xl font-bold text-white mt-1 lg:mt-2 flex items-center justify-center gap-1">
                                 {leaderboard[0].totalCurrentStreak}
-                                <Flame className="w-6 h-6 text-orange-400" />
+                                <Flame className="w-5 h-5 lg:w-6 lg:h-6 text-orange-400" />
                             </p>
-                            <p className="text-sm text-muted">Total Streak</p>
+                            <p className="text-xs lg:text-sm text-muted">Total Streak</p>
                         </Card>
                     </div>
 
                     {/* Third Place */}
-                    <div className="mt-8">
-                        <Card className={`text-center py-6 ${getRankBg(3)}`}>
-                            <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center">
-                                <span className="text-2xl font-bold text-white">
+                    <div className="mt-6 lg:mt-8">
+                        <Card className={`text-center py-4 lg:py-6 ${getRankBg(3)}`}>
+                            <div className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-2 lg:mb-3 rounded-full bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center">
+                                <span className="text-lg lg:text-2xl font-bold text-white">
                                     {leaderboard[2].username.charAt(0).toUpperCase()}
                                 </span>
                             </div>
-                            <Medal className="w-6 h-6 text-orange-400 mx-auto mb-2" />
-                            <h3 className="font-semibold text-white truncate px-2">
+                            <Medal className="w-5 h-5 lg:w-6 lg:h-6 text-orange-400 mx-auto mb-1 lg:mb-2" />
+                            <h3 className="font-semibold text-white truncate px-2 text-sm lg:text-base">
                                 {leaderboard[2].username}
                             </h3>
-                            <p className="text-2xl font-bold text-white mt-2 flex items-center justify-center gap-1">
+                            <p className="text-lg lg:text-2xl font-bold text-white mt-1 lg:mt-2 flex items-center justify-center gap-1">
                                 {leaderboard[2].totalCurrentStreak}
-                                <Flame className="w-5 h-5 text-orange-400" />
+                                <Flame className="w-4 h-4 lg:w-5 lg:h-5 text-orange-400" />
                             </p>
                             <p className="text-xs text-muted">Total Streak</p>
                         </Card>
@@ -156,24 +156,24 @@ export default function LeaderboardPage() {
 
             {/* Full Leaderboard */}
             <Card padding="none">
-                <div className="p-4 border-b border-zinc-800">
-                    <h2 className="font-semibold text-white">All Rankings</h2>
+                <div className="p-3 lg:p-4 border-b border-zinc-800">
+                    <h2 className="font-semibold text-white text-sm lg:text-base">All Rankings</h2>
                 </div>
                 <div className="divide-y divide-zinc-800">
                     {leaderboard.map((user) => (
                         <div
                             key={user.id}
-                            className={`flex items-center gap-4 p-4 ${user.isCurrentUser ? "bg-primary/10" : "hover:bg-surface-light"
+                            className={`flex items-center gap-3 lg:gap-4 p-3 lg:p-4 ${user.isCurrentUser ? "bg-primary/10" : "hover:bg-surface-light"
                                 } transition-colors`}
                         >
                             {/* Rank */}
-                            <div className="w-10 flex justify-center">
+                            <div className="w-8 lg:w-10 flex justify-center flex-shrink-0">
                                 {getRankIcon(user.rank)}
                             </div>
 
                             {/* Avatar */}
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center flex-shrink-0">
-                                <span className="text-white font-semibold">
+                            <div className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center flex-shrink-0">
+                                <span className="text-white font-semibold text-sm lg:text-base">
                                     {user.username.charAt(0).toUpperCase()}
                                 </span>
                             </div>
@@ -181,31 +181,31 @@ export default function LeaderboardPage() {
                             {/* User Info */}
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2">
-                                    <h3 className="font-medium text-white truncate">
+                                    <h3 className="font-medium text-white truncate text-sm lg:text-base">
                                         {user.username}
                                     </h3>
                                     {user.isCurrentUser && (
-                                        <span className="px-2 py-0.5 bg-primary/30 text-primary-light rounded text-xs">
+                                        <span className="px-1.5 lg:px-2 py-0.5 bg-primary/30 text-primary-light rounded text-xs">
                                             You
                                         </span>
                                     )}
                                 </div>
-                                <p className="text-sm text-muted">
+                                <p className="text-xs lg:text-sm text-muted truncate">
                                     {user.habitCount} habits • {user.totalCompletions} check-ins
                                 </p>
                             </div>
 
                             {/* Stats */}
-                            <div className="flex items-center gap-6 text-right">
+                            <div className="flex items-center gap-3 lg:gap-6 text-right flex-shrink-0">
                                 <div>
-                                    <p className="text-lg font-bold text-white flex items-center gap-1">
+                                    <p className="text-base lg:text-lg font-bold text-white flex items-center gap-1">
                                         {user.totalCurrentStreak}
-                                        <Flame className="w-4 h-4 text-orange-400" />
+                                        <Flame className="w-3 h-3 lg:w-4 lg:h-4 text-orange-400" />
                                     </p>
-                                    <p className="text-xs text-muted">Current</p>
+                                    <p className="text-xs text-muted hidden sm:block">Current</p>
                                 </div>
-                                <div>
-                                    <p className="text-lg font-bold text-white">
+                                <div className="hidden sm:block">
+                                    <p className="text-base lg:text-lg font-bold text-white">
                                         {user.bestStreak}
                                     </p>
                                     <p className="text-xs text-muted">Best</p>
@@ -217,12 +217,12 @@ export default function LeaderboardPage() {
             </Card>
 
             {leaderboard.length === 0 && (
-                <Card className="text-center py-12">
-                    <Trophy className="w-12 h-12 text-muted mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-white mb-2">
+                <Card className="text-center py-8 lg:py-12">
+                    <Trophy className="w-10 h-10 lg:w-12 lg:h-12 text-muted mx-auto mb-4" />
+                    <h3 className="text-base lg:text-lg font-semibold text-white mb-2">
                         No rankings yet
                     </h3>
-                    <p className="text-zinc-400">
+                    <p className="text-zinc-400 text-sm lg:text-base">
                         Start building habits to appear on the leaderboard
                     </p>
                 </Card>

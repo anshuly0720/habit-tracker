@@ -56,17 +56,17 @@ export default function FeedPage() {
     }
 
     return (
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-4 lg:space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold text-white">Activity Feed</h1>
-                    <p className="text-zinc-400 mt-1">
+                    <h1 className="text-2xl lg:text-3xl font-bold text-white">Activity Feed</h1>
+                    <p className="text-zinc-400 mt-1 text-sm lg:text-base">
                         See what your friends have been up to
                     </p>
                 </div>
                 <Link href="/users">
-                    <Button variant="secondary">
+                    <Button variant="secondary" className="w-full sm:w-auto">
                         <Users className="w-4 h-4" />
                         Find Friends
                     </Button>
@@ -75,14 +75,14 @@ export default function FeedPage() {
 
             {/* Feed */}
             {feedItems.length === 0 ? (
-                <Card className="text-center py-12">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-surface-light flex items-center justify-center">
-                        <Activity className="w-8 h-8 text-muted" />
+                <Card className="text-center py-8 lg:py-12">
+                    <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto mb-4 rounded-full bg-surface-light flex items-center justify-center">
+                        <Activity className="w-7 h-7 lg:w-8 lg:h-8 text-muted" />
                     </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">
+                    <h3 className="text-base lg:text-lg font-semibold text-white mb-2">
                         No activity yet
                     </h3>
-                    <p className="text-zinc-400 mb-6">
+                    <p className="text-zinc-400 mb-6 text-sm lg:text-base px-4">
                         Follow other users to see their activity here
                     </p>
                     <Link href="/users">
